@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moja Kochana Walentynko</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap');
+
+body {
+    margin: 0;
+    font-family: 'Cinzel', serif;
+    background: linear-gradient(180deg, #000000, #2b0033);
+    color: white;
+    text-align: center;
+}
+
+/* ===== Nagłówek ===== */
+header {
+    padding: 40px 15px 10px;
+}
+
+h1 {
+    font-size: 2.2em;
+    color: #b300ff;
+    text-shadow: 0 0 15px #ff0000;
+}
+
+/* ===== Serduszka ===== */
+nav {
+    margin: 25px 0;
+}
+
+.heart-btn {
+    display: inline-block;
+    font-size: 70px;
+    margin: 15px;
+    text-decoration: none;
+    color: #ff0000;
+    animation: pulse 2s infinite;
+    transition: 0.4s;
+}
+
+.heart-btn:active {
+    transform: scale(1.3);
+    color: #b300ff;
+}
+
+/* Pulsowanie */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+/* ===== Główna treść ===== */
+main {
+    padding: 20px 15px;
+}
+
+textarea {
+    width: 100%;
+    max-width: 100%;
+    height: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #b300ff;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    margin-top: 20px;
+    padding: 15px;
+    width: 100%;
+    border: 2px solid #ff0000;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+button:active {
+    background-color: #ff0000;
+    color: black;
+}
+
+#output {
+    margin-top: 30px;
+    white-space: pre-wrap;
+    font-size: 17px;
+}
+
+/* ===== Licznik ===== */
+#counter {
+    margin-top: 50px;
+    font-size: 18px;
+    color: #b300ff;
+    text-shadow: 0 0 10px #ff0000;
+}
+
+/* ===== Stopka ===== */
+footer {
+    margin-top: 50px;
+    padding: 15px;
+    background-color: black;
+    border-top: 2px solid #ff0000;
+    font-style: italic;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Moja Kochana Walentynko</h1>
+</header>
+
+<nav>
+    <a class="heart-btn" href="https://spotify.com" target="_blank">❤️</a>
+    <a class="heart-btn" href="https://www.youtube.com" target="_blank">❤️</a>
+</nav>
+
+<main>
+    <textarea id="wishInput" placeholder="Tutaj wpisz swoje długie życzenia..."></textarea>
+    <button onclick="showWish()">Pokaż Życzenia</button>
+
+    <div id="output"></div>
+    <div id="counter"></div>
+</main>
+
+<footer>
+    twój przyszły monsz Jakub
+</footer>
+
+<script>
+function showWish() {
+    document.getElementById("output").innerText =
+        document.getElementById("wishInput").value;
+}
+
+/* LICZNIK OD 10.10.2025 */
+const startDate = new Date("2025-10-10T00:00:00");
+
+function updateCounter() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    if (diff < 0) {
+        document.getElementById("counter").innerText =
+        "Jeszcze nie jesteśmy razem...";
+        return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    document.getElementById("counter").innerText =
+        "Jesteśmy razem już: " +
+        days + " dni, " +
+        hours + " godz., " +
+        minutes + " min., " +
+        seconds + " sek. 🖤";
+}
+
+setInterval(updateCounter, 1000);
+updateCounter();
+</script>
+
+</body>
+</html>
